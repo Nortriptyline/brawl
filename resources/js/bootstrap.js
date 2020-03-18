@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     // require('bootstrap');
+    require('materialize-css/dist/js/materialize.min.js')
 } catch (e) {}
 
 /**
