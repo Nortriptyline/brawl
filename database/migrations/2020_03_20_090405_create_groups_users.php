@@ -17,7 +17,7 @@ class CreateGroupsUsers extends Migration
             $table->id();
             $table->bigInteger('group_id');
             $table->bigInteger('user_id');
-            $table->enum('role', ['admin', 'handler ', 'servants']);
+            $table->enum('role', ['admin', 'handler ', 'servant']);
             $table->timestamps();
         });
     }
