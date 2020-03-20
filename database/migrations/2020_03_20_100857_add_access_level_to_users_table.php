@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccessLevelsTable extends Migration
+class AddAccessLevelToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateAccessLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('access_rank', function (Blueprint $table) {
-            $table->id();
-            $table->enum('name', ['admin', 'user']);
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->enum('access_level', ['admin', 'handler', 'user', 'dog']);
         });
     }
 
@@ -27,6 +25,8 @@ class CreateAccessLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('access_levels');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('access_level');
+        });
     }
 }
