@@ -24,45 +24,24 @@
 
 <body>
     <div id="app">
+        <header>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#!" class="brand-logo">Logo</a>
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                </div>
+            </nav>
 
-        <ul id="slide-out" class="sidenav sidenav-fixed">
-            <li>Logo</li>
-            <li>
-                <ul class="collapsible collapsible-accordion">
-                    <li><a href="#!">First Sidebar Link</a></li>
-                    <li><a href="#!">Second Sidebar Link</a></li>
-                    <li class="no-padding">
-                        <ul class="collapsible collapsible-accordion">
-                            <li>
-                                <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
-                                <div class="collapsible-body">
-                                    <ul>
-                                        <li><a href="#!">First</a></li>
-                                        <li><a href="#!">Second</a></li>
-                                        <li><a href="#!">Third</a></li>
-                                        <li><a href="#!">Fourth</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
-                                <div class="collapsible-body">
-                                    <ul>
-                                        <li><a href="#!">First</a></li>
-                                        <li><a href="#!">Second</a></li>
-                                        <li><a href="#!">Third</a></li>
-                                        <li><a href="#!">Fourth</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+            <ul class="sidenav sidenav-fixed" id="mobile-nav">
+                <li><a href="{{ route('admin.home') }}">Dashboards</a></li>
+                <li><a href="{{ route('admin.tournaments.index') }}">Tournaments</a></li>
+            </ul>
+        </header>
 
-        <main class="py-4">
-            @yield('content')
+        <main>
+            <div class="container">
+                @yield('content')
+            </div>
         </main>
     </div>
 </body>
