@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Tournament;
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class TournamentController extends Controller
+class Tournament extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,11 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        return view('admin.tournaments');
+        $user = Auth::user();
+        $tournaments = $user->tournaments;
+
+        return response()
+            ->json($tournaments);
     }
 
     /**

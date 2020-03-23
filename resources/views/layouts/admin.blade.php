@@ -22,12 +22,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body class="grey lighten-4">
     <div id="app">
         <header>
             <nav>
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo">Logo</a>
+                    <a href="#!" class="brand-logo">
+                        @yield('title')
+                    </a>
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </div>
             </nav>
@@ -38,7 +40,7 @@
             </ul>
         </header>
 
-        <main>
+        <main class="">
             <div class="container">
                 @yield('content')
             </div>

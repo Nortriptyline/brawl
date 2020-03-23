@@ -16,6 +16,8 @@ class CreateTournamentsTable extends Migration
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->date('starting_date');
+            $table->time('starting_time');
             $table->smallInteger('size');
             $table->tinyInteger('team_size');
             $table->enum('genre', ['male', 'female', 'mixed']);
