@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Tournament;
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class TournamentController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +14,7 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $tournaments = $user->tournaments;
-
-        return view('admin.tournaments', [
-            'tournaments' => $tournaments
-        ]);
+        //
     }
 
     /**

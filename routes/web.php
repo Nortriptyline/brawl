@@ -26,6 +26,7 @@ Route::namespace('Admin')->group(function() {
         Route::name('admin.')->group(function() {
             Route::get('/', 'HomeController@index')->name('home');
             Route::resource('tournaments', 'TournamentController');
+            Route::resource('groups', 'GroupController');
         });
     });
 });
