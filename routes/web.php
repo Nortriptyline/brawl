@@ -27,6 +27,16 @@ Route::namespace('Admin')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::name('admin.')->group(function () {
             Route::get('/', 'HomeController@index')->name('home');
+
+
+            Route::group([
+                'as' => 'settings.',
+                'prefix' => 'settings',
+            ], function() {
+                Route::get('/settings', 'SettingsController@index')->name('index');
+            });
+
+
             Route::resource('tournaments', 'TournamentController');
             Route::resource('groups', 'GroupController');
         });
@@ -39,7 +49,6 @@ Route::namespace('Admin')->group(function () {
 Route::namespace('Api')->group(function () {
     Route::prefix('api')->group(function () {
         Route::name('api.')->group(function () {
-
             // Tournaments routes
             Route::prefix('tournament')->group(function () {
                 Route::get('/', 'Tournament@index')->name('my_tournaments');

@@ -41,8 +41,8 @@
                 <li class="{{ Route::currentRouteName() != 'admin.tournaments.index' ?: 'active'}}">
                     <a href="{{ route('admin.tournaments.index') }}">Tournaments</a>
                 </li>
-                <li class="{{ Route::currentRouteName() != 'admin.settings' ?: 'active'}}">
-                    <a href="{{ route('admin.settings') }}">Settings</a>
+                <li class="{{ Route::currentRouteName() != 'admin.settings.index' ?: 'active'}}">
+                    <a href="{{ route('admin.settings.index') }}">Settings</a>
                 </li>
             </ul>
         </header>
