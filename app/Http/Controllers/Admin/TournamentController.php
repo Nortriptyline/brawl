@@ -28,6 +28,7 @@ class TournamentController extends Controller
     public function create()
     {
         //
+        return view('admin.tournaments.create');
     }
 
     /**

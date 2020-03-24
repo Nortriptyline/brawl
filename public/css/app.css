@@ -9183,3 +9183,12 @@ footer {
   }
 }
 
+ul.sidenav.sidenav-fixed ul.collapsible-accordion a.collapsible-header {
+  padding: 0 30px;
+}
+
+ul.sidenav.sidenav-fixed ul.collapsible-accordion div.collapsible-body li a {
+  padding: 0 45px;
+  font-weight: 400;
+}
+

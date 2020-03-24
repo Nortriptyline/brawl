@@ -25,7 +25,7 @@
 <body class="grey lighten-4">
     <div id="app">
         <header>
-            <nav>
+            <nav class="blue">
                 <div class="nav-wrapper">
                     <a href="#!" class="brand-logo">
                         @yield('title')
@@ -33,14 +33,39 @@
                     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </div>
             </nav>
-
             <ul class="sidenav sidenav-fixed" id="mobile-nav">
+
+                {{-- Dashboards --}}
                 <li class="{{ Route::currentRouteName() != 'admin.home' ?: 'active'}}">
                     <a href="{{ route('admin.home') }}">Dashboards</a>
                 </li>
-                <li class="{{ Route::currentRouteName() != 'admin.tournaments.index' ?: 'active'}}">
-                    <a href="{{ route('admin.tournaments.index') }}">Tournaments</a>
+
+                {{-- Collapsibles --}}
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        {{-- Tournaments --}}
+                        <li class="{{ strpos(Route::currentRouteName(), 'admin.tournaments') !== false ? 'active' : ''}}">
+                            <a class="collapsible-header waves-effect waves-teal">Tournaments</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li class="{{ Route::currentRouteName() == 'admin.tournaments.index' ? 'active blue' : ''}}">
+                                        <a href="{{ route('admin.tournaments.index') }}">Voir tous</a>
+                                    </li>
+
+                                    <li
+                                        class="{{ Route::currentRouteName() == 'admin.tournaments.create' ? 'active blue' : ''}}">
+                                        <a href="{{ route('admin.tournaments.create') }}">Créer</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        {{-- Next --}}
+                    </ul>
                 </li>
+
+
                 <li class="{{ Route::currentRouteName() != 'admin.settings.index' ?: 'active'}}">
                     <a href="{{ route('admin.settings.index') }}">Settings</a>
                 </li>
