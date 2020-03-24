@@ -35,8 +35,15 @@
             </nav>
 
             <ul class="sidenav sidenav-fixed" id="mobile-nav">
-                <li><a href="{{ route('admin.home') }}">Dashboards</a></li>
-                <li><a href="{{ route('admin.tournaments.index') }}">Tournaments</a></li>
+                <li class="{{ Route::currentRouteName() != 'admin.home' ?: 'active'}}">
+                    <a href="{{ route('admin.home') }}">Dashboards</a>
+                </li>
+                <li class="{{ Route::currentRouteName() != 'admin.tournaments.index' ?: 'active'}}">
+                    <a href="{{ route('admin.tournaments.index') }}">Tournaments</a>
+                </li>
+                <li class="{{ Route::currentRouteName() != 'admin.settings' ?: 'active'}}">
+                    <a href="{{ route('admin.settings') }}">Settings</a>
+                </li>
             </ul>
         </header>
 
