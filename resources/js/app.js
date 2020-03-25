@@ -22,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-tournaments', require('./components/AdminTournaments.vue').default);
+Vue.component('search-city', require('./components/searchCity.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,4 +40,16 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('.sidenav').sidenav();
+});
+
+$(document).ready(function () {
+    $('.datepicker').datepicker();
+});
+
+$(document).ready(function () {
+    $('.timepicker').timepicker(
+        {
+            twelveHour: false
+        }
+    );
 });

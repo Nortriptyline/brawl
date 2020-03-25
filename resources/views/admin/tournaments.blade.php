@@ -14,5 +14,5 @@ Tournament
 </h2>
 
 <admin-tournaments></admin-tournaments>
-add.blade
+
 @endsection

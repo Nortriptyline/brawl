@@ -12,6 +12,8 @@ try {
 
     // require('bootstrap');
     require('materialize-css/dist/js/materialize.min.js')
+    require('select2')
+    require('./materialSelect2.js')
 } catch (e) {}
 
 /**

@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|--------------------------------------
+$(document).ready(function () {
+
+});
+------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -53,6 +57,10 @@ Route::namespace('Api')->group(function () {
             Route::prefix('tournament')->group(function () {
                 Route::get('/', 'Tournament@index')->name('my_tournaments');
             });
+
+            // Cities
+            Route::get('/city/search', 'Cities@search')->name('search_city');
+
         });
     });
 });

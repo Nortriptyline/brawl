@@ -16,6 +16,14 @@
                 </div>
             </div>
         </div>
+
+        <ul>
+            {{ $region->name }} | {{ $region->code }}
+
+            @foreach ($region->cities as $city)
+                <li>{{ $city->name }} | {{ $city->department->name }}</li>
+            @endforeach
+        </ul>
     </div>
 </div>
 @endsection

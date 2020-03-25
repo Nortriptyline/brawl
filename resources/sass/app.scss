@@ -10,6 +10,8 @@
 // Materialize
 @import '~materialize-css/sass/materialize.scss';
 
+// Materialize theme for Select2
+@import 'select2.scss';
 
     header, main, footer {
       padding-left: 300px;
@@ -32,6 +34,19 @@
                         padding: 0 45px;
                         font-weight: 400;
                     }
+                }
+            }
+        }
+    }
+
+    #admin {
+        header {
+            nav {
+                h2 {
+                    margin: 0;
+                    padding: 20px;
+                    font-weight: 400;
+                    font-size: larger;
                 }
             }
         }
