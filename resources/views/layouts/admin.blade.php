@@ -37,18 +37,26 @@
 
                 {{-- Dashboards --}}
                 <li class="{{ Route::currentRouteName() != 'admin.home' ?: 'active'}}">
-                    <a href="{{ route('admin.home') }}">Dashboards</a>
+                    <a href="{{ route('admin.home') }}">
+                        <i class="material-icons">dashboard</i>
+                        Dashboards
+                    </a>
                 </li>
 
                 {{-- Collapsibles --}}
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
                         {{-- Tournaments --}}
-                        <li class="{{ strpos(Route::currentRouteName(), 'admin.tournaments') !== false ? 'active' : ''}}">
-                            <a class="collapsible-header waves-effect waves-teal">Tournaments</a>
+                        <li
+                            class="{{ strpos(Route::currentRouteName(), 'admin.tournaments') !== false ? 'active' : ''}}">
+                            <a class="collapsible-header waves-effect waves-teal">
+                                <i class="material-icons">sports_volleyball</i>
+                                Tournaments
+                            </a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li class="{{ Route::currentRouteName() == 'admin.tournaments.index' ? 'active blue' : ''}}">
+                                    <li
+                                        class="{{ Route::currentRouteName() == 'admin.tournaments.index' ? 'active blue' : ''}}">
                                         <a href="{{ route('admin.tournaments.index') }}">Voir tous</a>
                                     </li>
 
@@ -67,7 +75,22 @@
 
 
                 <li class="{{ Route::currentRouteName() != 'admin.settings.index' ?: 'active'}}">
-                    <a href="{{ route('admin.settings.index') }}">Settings</a>
+                    <a href="{{ route('admin.settings.index') }}">
+                        <i class="material-icons">settings</i>
+                        Settings
+                    </a>
+                </li>
+
+                <li>
+                    @csrf
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="material-icons">exit_to_app</i>
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" style="display: none;" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </header>

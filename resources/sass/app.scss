@@ -10,46 +10,52 @@
 // Materialize
 @import '~materialize-css/sass/materialize.scss';
 
-// Materialize theme for Select2
-@import 'select2.scss';
 
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
     header, main, footer {
-      padding-left: 300px;
+    padding-left: 0;
     }
+}
 
-    @media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;
-      }
-    }
-
-    ul.sidenav.sidenav-fixed {
-        ul.collapsible-accordion {
-            a.collapsible-header {
-                padding: 0 30px;
+ul.sidenav.sidenav-fixed {
+    ul.collapsible-accordion {
+        a.collapsible-header {
+            padding: 0 30px;
+        }
+        div.collapsible-body {
+            li {
+                a {
+                    padding: 0 45px;
+                    font-weight: 400;
+                }
             }
-            div.collapsible-body {
-                li {
-                    a {
-                        padding: 0 45px;
-                        font-weight: 400;
+        }
+    }
+}
+
+#admin {
+    header {
+        nav {
+            h2 {
+                margin: 0;
+                padding: 20px;
+                font-weight: 400;
+                font-size: larger;
+            }
+        }
+        ul {
+            li {
+                a {
+                    i.material-icons {
+                        margin: 0 12px 0 0;
                     }
                 }
             }
         }
     }
-
-    #admin {
-        header {
-            nav {
-                h2 {
-                    margin: 0;
-                    padding: 20px;
-                    font-weight: 400;
-                    font-size: larger;
-                }
-            }
-        }
-    }
-
+}
 

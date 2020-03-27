@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <select class="select2" id="city" v-model="term" name="city"> </select>
+  <div class="input-field col s6">
+    <input type="text" v-model="term" id="city" class="autocomplete" />
+    <label for="city">Ville / Code postal</label>
   </div>
 </template>
 
@@ -11,22 +12,42 @@ export default {
   data: function() {
     return {
       cities: [],
-      term: ""
+      term: "",
+      selected: {},
+      zip: ""
     };
   },
   methods: {
+    search: function(term) {
+      cityApi.search(term).then(data => {
+        this.cities = data;
+        var instance = M.Autocomplete.getInstance($("input.autocomplete"));
+        instance.updateData(this.builtCities);
+        instance.open();
+      });
+    }
   },
-  computed: {},
+  computed: {
+    builtCities: function() {
+      var cities = {};
+
+      this.cities.forEach(city => {
+        cities[city.name + " " + city.zip_code] = city;
+      });
+
+      return cities;
+    }
+  },
+  watch: {
+    term: function(term) {
+      this.search(term);
+    }
+  },
   mounted() {
-    $(".select2").select2({
-      ajax: {
-        url: "/api/city/search/" + this.term,
-        processResults: function(data) {
-          console.log(data);
-        },
-        delay: 250
-      },
-      minimumInputLength: 3
+    $(document).ready(function() {
+      $("input.autocomplete").autocomplete({
+        data: {}
+      });
     });
   }
 };

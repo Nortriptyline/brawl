@@ -59,7 +59,7 @@ Route::namespace('Api')->group(function () {
             });
 
             // Cities
-            Route::get('/city/search', 'Cities@search')->name('search_city');
+            Route::get('/city/search/{term}', 'Cities@search')->name('search_city');
 
         });
     });

@@ -23,11 +23,11 @@ class Cities extends Controller
         //     ->json($tournaments);
     }
 
-    public function search(Request $request)
+    public function search($term)
     {
-        $term = $request->input('term');
-        // dd(City::search($term)->get());
-        return City::search($term)->get();
+        $cities = City::search($term)->get();
+
+        return $cities->toJson();
     }
 
 }

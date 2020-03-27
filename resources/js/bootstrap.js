@@ -10,10 +10,7 @@ try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    // require('bootstrap');
-    require('materialize-css/dist/js/materialize.min.js')
-    require('select2')
-    require('./materialSelect2.js')
+    window.M = require('materialize-css/dist/js/materialize.min.js')
 } catch (e) {}
 
 /**
