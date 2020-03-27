@@ -2091,14 +2091,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       cities: [],
-      term: "",
-      selected: {},
-      zip: ""
+      citiesId: [],
+      city: "",
+      term: ""
     };
   },
   methods: {
@@ -2106,18 +2115,27 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       _services_api_City__WEBPACK_IMPORTED_MODULE_0__["default"].search(term).then(function (data) {
-        _this.cities = data;
-        var instance = M.Autocomplete.getInstance($("input.autocomplete"));
-        instance.updateData(_this.builtCities);
-        instance.open();
+        if (!_this.citiesId.hasOwnProperty(term)) {
+          _this.cities = data;
+          var instance = M.Autocomplete.getInstance($("input.autocomplete"));
+          instance.updateData(_this.displayedCities);
+          instance.open();
+        }
       });
+    },
+    setCity: function setCity(city) {
+      this.city = this.citiesId[city] !== "undefined" ? this.citiesId[city] : null;
     }
   },
   computed: {
-    builtCities: function builtCities() {
+    displayedCities: function displayedCities() {
+      var _this2 = this;
+
       var cities = {};
       this.cities.forEach(function (city) {
-        cities[city.name + " " + city.zip_code] = city;
+        var key = city.name + " " + city.zip_code;
+        cities[key] = null;
+        _this2.citiesId[key] = city.id;
       });
       return cities;
     }
@@ -2128,9 +2146,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    var that = this;
     $(document).ready(function () {
       $("input.autocomplete").autocomplete({
-        data: {}
+        data: {},
+        onAutocomplete: function onAutocomplete(value) {
+          that.term = value;
+          that.setCity(value);
+        }
       });
     });
   }
@@ -33893,7 +33916,12 @@ var render = function() {
         }
       ],
       staticClass: "autocomplete",
-      attrs: { type: "text", id: "city" },
+      attrs: {
+        type: "text",
+        name: "city_name",
+        id: "city_name",
+        autocomplete: "off"
+      },
       domProps: { value: _vm.term },
       on: {
         input: function($event) {
@@ -33905,7 +33933,30 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c("label", { attrs: { for: "city" } }, [_vm._v("Ville / Code postal")])
+    _c("label", { attrs: { for: "city_name" } }, [
+      _vm._v("Ville / Code postal")
+    ]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.city,
+          expression: "city"
+        }
+      ],
+      attrs: { id: "city", type: "hidden", name: "city" },
+      domProps: { value: _vm.city },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.city = $event.target.value
+        }
+      }
+    })
   ])
 }
 var staticRenderFns = []
