@@ -44,7 +44,19 @@ class TournamentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'city' => 'required|exists:cities:id',
+            'starting_date' => 'required|date',
+            'starting_time' => 'required|date_format:H:i',
+            'address' => 'required|max:255',
+            'size' => 'required|numeric|min:2',
+            'genre' => 'required|in:mixed,female,male',
+            'team_size' => 'required|in:2,3,4,6',
+            'field' => 'required|in:indoor,beach,grass,snow',
+        ]);
 
+        dd($request);
     }
 
     /**
