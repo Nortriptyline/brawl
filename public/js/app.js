@@ -2012,20 +2012,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    displayed_tournaments: function displayed_tournaments() {
+    searched_tournaments: function searched_tournaments() {
       var _this = this;
 
+      return this.tournaments.filter(function (tournament) {
+        return tournament.name.toLowerCase().includes(_this.search.toLowerCase());
+      });
+    },
+    displayed_tournaments: function displayed_tournaments() {
       // First element of the table to be displayed in the current page.
       var first_elmnt = this.page == 1 ? 0 : this.nb_displayed_entries * (this.page - 1);
 
       if (this.tournaments.length > 0) {
-        return this.tournaments.filter(function (tournament) {
-          return tournament.name.toLowerCase().includes(_this.search.toLowerCase());
-        }).slice(first_elmnt, this.nb_displayed_entries * this.page);
+        return this.searched_tournaments.slice(first_elmnt, this.nb_displayed_entries * this.page);
       }
     },
     last_page: function last_page() {
-      return Math.ceil(this.tournaments.length / this.nb_displayed_entries);
+      return Math.ceil(this.searched_tournaments.length / this.nb_displayed_entries);
     }
   },
   mounted: function mounted() {
@@ -33850,7 +33853,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nom")]),
         _vm._v(" "),
-        _c("th", [_vm._v(" Ville ")]),
+        _c("th", [_vm._v("Ville")]),
         _vm._v(" "),
         _c("th", [_vm._v("Terrain")]),
         _vm._v(" "),

@@ -14,7 +14,7 @@
         <thead>
           <tr>
             <th>Nom</th>
-            <th> Ville </th>
+            <th>Ville</th>
             <th>Terrain</th>
             <th>Genre</th>
             <th class="center">Format</th>
@@ -68,18 +68,18 @@
 </template>
 
 <style lang="scss" scoped>
-    .pagination {
-        position: absolute;
-        bottom: 0;
-    }
+.pagination {
+  position: absolute;
+  bottom: 0;
+}
 
-    .input-field {
-        margin-bottom: 0;
-    }
+.input-field {
+  margin-bottom: 0;
+}
 
-    tbody {
-        overflow-y: scroll;
-    }
+tbody {
+  overflow-y: scroll;
+}
 </style>
 
 <script>
@@ -101,22 +101,28 @@ export default {
     }
   },
   computed: {
+    searched_tournaments: function() {
+      return this.tournaments.filter(tournament =>
+        tournament.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+    },
     displayed_tournaments: function() {
       // First element of the table to be displayed in the current page.
       var first_elmnt =
         this.page == 1 ? 0 : this.nb_displayed_entries * (this.page - 1);
 
       if (this.tournaments.length > 0) {
-        return this.tournaments
-          .filter(tournament =>
-            tournament.name.toLowerCase().includes(this.search.toLowerCase())
-          )
-          .slice(first_elmnt, this.nb_displayed_entries * this.page);
+        return this.searched_tournaments.slice(
+          first_elmnt,
+          this.nb_displayed_entries * this.page
+        );
       }
     },
 
     last_page: function() {
-      return Math.ceil(this.tournaments.length / this.nb_displayed_entries);
+      return Math.ceil(
+        this.searched_tournaments.length / this.nb_displayed_entries
+      );
     }
   },
   mounted() {
