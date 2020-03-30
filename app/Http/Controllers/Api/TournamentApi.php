@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Tournament;
 
-class Tournament extends Controller
+class TournamentApi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,7 @@ class Tournament extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $tournaments = $user->tournaments;
+        $tournaments = Tournament::where('creator', Auth::id())->with('city')->get();
 
         return response()
             ->json($tournaments);

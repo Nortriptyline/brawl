@@ -55,7 +55,7 @@ Route::namespace('Api')->group(function () {
         Route::name('api.')->group(function () {
             // Tournaments routes
             Route::prefix('tournament')->group(function () {
-                Route::get('/', 'Tournament@index')->name('my_tournaments');
+                Route::get('/', 'TournamentApi@index')->name('my_tournaments');
             });
 
             // Cities

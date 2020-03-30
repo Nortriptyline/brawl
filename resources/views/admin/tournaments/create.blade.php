@@ -14,7 +14,8 @@ Nouveau tournoi
                 <span class="card-title">Informations générales</span>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="name" name="name" type="text" class="validate" minlength="3" maxlength="255" required>
+                        <input id="name" name="name" type="text" class="validate" minlength="3" maxlength="255"
+                            required>
                         <label for="name">Nom</label>
                         <span class="helper-text" data-error="Veuillez entrer entre 3 et 255 caractères"></span>
                         @error('name')
@@ -24,12 +25,8 @@ Nouveau tournoi
                         @enderror
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input type="text" name="starting_date" class="datepicker" id="starting_date">
-                        <label for="starting_date">Date</label>
-                    </div>
+                    <brawl-datepicker></brawl-datepicker>
                     <div class="input-field col s6">
                         <input type="text" class="timepicker" name="starting_time" id="starting_time">
                         <label for="starting_time">Heure de début</label>

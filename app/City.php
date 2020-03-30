@@ -30,6 +30,6 @@ class City extends Model
 
     public function tournaments()
     {
-        return $this->belongsTo('App\Tournament');
+        return $this->hasMany('App\Tournament');
     }
 }

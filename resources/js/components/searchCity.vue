@@ -1,4 +1,4 @@
-<template>
+    <template>
   <div class="input-field col s6">
     <input
       type="text"
@@ -29,13 +29,12 @@ export default {
   methods: {
     search: function(term) {
       cityApi.search(term).then(data => {
-
-          if (!this.citiesId.hasOwnProperty(term)) {
-              this.cities = data;
-              var instance = M.Autocomplete.getInstance($("input.autocomplete"));
-              instance.updateData(this.displayedCities);
-              instance.open();
-          }
+        if (!this.citiesId.hasOwnProperty(term)) {
+          this.cities = data;
+          var instance = M.Autocomplete.getInstance($("input.autocomplete"));
+          instance.updateData(this.displayedCities);
+          instance.open();
+        }
       });
     },
     setCity: function(city) {

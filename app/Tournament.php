@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tournament extends Model
 {
+    protected $fillable = [
+        'name',
+        'city_id',
+        'starting_date',
+        'starting_time',
+        'address',
+        'size',
+        'genre',
+        'team_size',
+        'field',
+    ];
+
     public function creator()
     {
         return $this->belongsTo('App\User');
@@ -18,6 +30,6 @@ class Tournament extends Model
 
     public function city()
     {
-        return $this->hasOne('App\City');
+        return $this->belongsTo('App\City');
     }
 }

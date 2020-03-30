@@ -46,7 +46,7 @@ class TournamentController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:255',
-            'city_id' => 'required|exists:cities:id',
+            'city_id' => 'required|exists:cities,id',
             'starting_date' => 'required|date',
             'starting_time' => 'required|date_format:H:i',
             'address' => 'required|max:255',
@@ -56,7 +56,20 @@ class TournamentController extends Controller
             'field' => 'required|in:indoor,beach,grass,snow',
         ]);
 
-        dd($request);
+        $tournament = new Tournament();
+        $tournament->name = $request->input('name');
+        $tournament->city_id = $request->input('city_id');
+        $tournament->starting_date = $request->input('starting_date');
+        $tournament->starting_time = $request->input('starting_time');
+        $tournament->address = $request->input('address');
+        $tournament->size = $request->input('size');
+        $tournament->genre = $request->input('genre');
+        $tournament->team_size = $request->input('team_size');
+        $tournament->field = $request->input('field');
+        $tournament->creator = Auth::id();
+
+        $tournament->save();
+        // $tournament = Tournament::create($request->all());
     }
 
     /**

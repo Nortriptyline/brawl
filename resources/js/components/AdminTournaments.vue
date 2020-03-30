@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th>Nom</th>
+            <th> Ville </th>
             <th>Terrain</th>
             <th>Genre</th>
             <th class="center">Format</th>
@@ -27,6 +28,7 @@
         <tbody>
           <tr v-for="tournament in displayed_tournaments" :key="tournament.id">
             <td>{{ tournament.name }}</td>
+            <td>{{ tournament.city.name }}</td>
             <td>{{ tournament.field }}</td>
             <td>{{ tournament.genre }}</td>
             <td class="center">{{ tournament.team_size }}</td>

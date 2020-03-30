@@ -17,6 +17,7 @@ class CreateTournamentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('city_id');
+            $table->string('address');
             $table->date('starting_date');
             $table->time('starting_time');
             $table->smallInteger('size');

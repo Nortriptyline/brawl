@@ -1991,6 +1991,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2069,6 +2071,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/brawlDatepicker.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/brawlDatepicker.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      starting_date: ""
+    };
+  },
+  methods: {
+    formatDate: function formatDate(date) {
+      var d = new Date(date),
+          month = "" + (d.getMonth() + 1),
+          day = "" + d.getDate(),
+          year = d.getFullYear();
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+      return [year, month, day].join("-");
+    },
+    setDate: function setDate(starting_date) {
+      this.starting_date = this.formatDate(starting_date);
+    }
+  },
+  mounted: function mounted() {
+    var that = this;
+    $(".datepicker").datepicker({
+      autoClose: true,
+      format: "dddd dd mmmm yyyy",
+      firstDay: 1,
+      i18n: {
+        done: "Valider",
+        clear: "Effacer",
+        cancel: "Annuler",
+        months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+        monthsShort: ["Jan", "Fev", "Mar", "Avr", "Mai", "Jun", "Jul", "Aou", "Sep", "Oct", "Nov", "Dec"],
+        weekdays: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
+        weekdaysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+        weekdaysAbbrev: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"]
+      },
+      onSelect: function onSelect(data) {
+        that.setDate(data);
+      }
+    });
   }
 });
 
@@ -33709,6 +33783,8 @@ var render = function() {
             return _c("tr", { key: tournament.id }, [
               _c("td", [_vm._v(_vm._s(tournament.name))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(tournament.city.name))]),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(tournament.field))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(tournament.genre))]),
@@ -33773,6 +33849,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Nom")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Ville ")]),
         _vm._v(" "),
         _c("th", [_vm._v("Terrain")]),
         _vm._v(" "),
@@ -33884,6 +33962,58 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/brawlDatepicker.vue?vue&type=template&id=413f0287&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/brawlDatepicker.vue?vue&type=template&id=413f0287& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "input-field col s6" }, [
+    _c("input", {
+      staticClass: "datepicker",
+      attrs: { type: "text", name: "display_date", id: "display_date" }
+    }),
+    _vm._v(" "),
+    _c("label", { attrs: { for: "starting_date" } }, [_vm._v("Date")]),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.starting_date,
+          expression: "starting_date"
+        }
+      ],
+      attrs: { type: "hidden", name: "starting_date", id: "starting_date" },
+      domProps: { value: _vm.starting_date },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.starting_date = $event.target.value
+        }
+      }
+    })
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46151,6 +46281,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('admin-tournaments', __webpack_require__(/*! ./components/AdminTournaments.vue */ "./resources/js/components/AdminTournaments.vue")["default"]);
 Vue.component('search-city', __webpack_require__(/*! ./components/searchCity.vue */ "./resources/js/components/searchCity.vue")["default"]);
+Vue.component('brawl-datepicker', __webpack_require__(/*! ./components/brawlDatepicker.vue */ "./resources/js/components/brawlDatepicker.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -46165,9 +46296,6 @@ $(document).ready(function () {
 });
 $(document).ready(function () {
   $('.sidenav').sidenav();
-});
-$(document).ready(function () {
-  $('.datepicker').datepicker();
 });
 $(document).ready(function () {
   $('.timepicker').timepicker({
@@ -46375,6 +46503,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/brawlDatepicker.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/brawlDatepicker.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _brawlDatepicker_vue_vue_type_template_id_413f0287___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./brawlDatepicker.vue?vue&type=template&id=413f0287& */ "./resources/js/components/brawlDatepicker.vue?vue&type=template&id=413f0287&");
+/* harmony import */ var _brawlDatepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./brawlDatepicker.vue?vue&type=script&lang=js& */ "./resources/js/components/brawlDatepicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _brawlDatepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _brawlDatepicker_vue_vue_type_template_id_413f0287___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _brawlDatepicker_vue_vue_type_template_id_413f0287___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/brawlDatepicker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/brawlDatepicker.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/brawlDatepicker.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_brawlDatepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./brawlDatepicker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/brawlDatepicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_brawlDatepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/brawlDatepicker.vue?vue&type=template&id=413f0287&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/brawlDatepicker.vue?vue&type=template&id=413f0287& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_brawlDatepicker_vue_vue_type_template_id_413f0287___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./brawlDatepicker.vue?vue&type=template&id=413f0287& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/brawlDatepicker.vue?vue&type=template&id=413f0287&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_brawlDatepicker_vue_vue_type_template_id_413f0287___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_brawlDatepicker_vue_vue_type_template_id_413f0287___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
