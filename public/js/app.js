@@ -33946,7 +33946,7 @@ var render = function() {
           expression: "city"
         }
       ],
-      attrs: { id: "city", type: "hidden", name: "city" },
+      attrs: { id: "city_id", type: "hidden", name: "city_id" },
       domProps: { value: _vm.city },
       on: {
         input: function($event) {

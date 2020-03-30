@@ -46,7 +46,7 @@ class TournamentController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:255',
-            'city' => 'required|exists:cities:id',
+            'city_id' => 'required|exists:cities:id',
             'starting_date' => 'required|date',
             'starting_time' => 'required|date_format:H:i',
             'address' => 'required|max:255',

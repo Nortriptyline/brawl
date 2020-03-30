@@ -6,11 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tournament extends Model
 {
-    public function creator() {
+    public function creator()
+    {
         return $this->belongsTo('App\User');
     }
 
-    public function group() {
+    public function group()
+    {
         return $this->belongsTo('App\Group');
+    }
+
+    public function city()
+    {
+        return $this->hasOne('App\City');
     }
 }

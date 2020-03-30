@@ -10,7 +10,7 @@
     />
     <label for="city_name">Ville / Code postal</label>
 
-    <input id="city" v-model="city" type="hidden" name="city" />
+    <input id="city_id" v-model="city" type="hidden" name="city_id" />
   </div>
 </template>
 

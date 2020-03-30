@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(Tournament::class, function (Faker $faker) {
     return [
         'name' => $faker->catchPhrase,
+        'city_id' => $faker->numberBetween(1, 35853),
         'starting_date' => $faker->date('Y-m-d', '+5 months'),
         'starting_time' => $faker->time,
         'size' => $faker->randomElement(['8', '12', '16', '24', '32']),

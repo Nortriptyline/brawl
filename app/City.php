@@ -27,4 +27,9 @@ class City extends Model
     {
         return $this->belongsTo('App\Department', 'department_code', 'code');
     }
+
+    public function tournaments()
+    {
+        return $this->belongsTo('App\Tournament');
+    }
 }
