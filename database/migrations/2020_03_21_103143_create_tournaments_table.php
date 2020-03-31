@@ -26,6 +26,7 @@ class CreateTournamentsTable extends Migration
             $table->enum('field', ['indoor','beach','grass','snow']);
             $table->bigInteger('creator');
             $table->bigInteger('group_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

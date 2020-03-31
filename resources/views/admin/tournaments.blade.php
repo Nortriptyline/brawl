@@ -13,5 +13,5 @@ Tournament
     </a>
 </h2>
 
-<admin-tournaments></admin-tournaments>
+<admin-tournaments csrf="{{ csrf_token() }}"></admin-tournaments>
 @endsection

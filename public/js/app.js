@@ -1994,6 +1994,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2004,12 +2027,21 @@ __webpack_require__.r(__webpack_exports__);
       page: 1
     };
   },
+  props: ["csrf"],
   methods: {
     getTournaments: function getTournaments() {
       return _services_api_Tournament__WEBPACK_IMPORTED_MODULE_0__["default"].getMine();
     },
     setPage: function setPage(page) {
-      this.page = page;
+      if (page > 0 && page <= this.last_page) {
+        this.page = page;
+      }
+    },
+    pageIsActive: function pageIsActive(page) {
+      return page == this.page;
+    },
+    trash: function trash(id) {
+      $("#trash_" + id).submit();
     }
   },
   computed: {
@@ -33858,7 +33890,46 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _vm._m(1, true)
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "red-text text-accent-3 waves-effect btn-small btn-flat white",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.trash(tournament.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "large material-icons" }, [
+                      _vm._v("delete")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    staticStyle: { display: "none" },
+                    attrs: {
+                      id: "trash_" + tournament.id,
+                      action: "/admin/tournaments/trash/" + tournament.id,
+                      method: "POST"
+                    }
+                  },
+                  [
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_method", value: "PUT" }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: { type: "hidden", name: "_token" },
+                      domProps: { value: _vm.csrf }
+                    })
+                  ]
+                )
               ])
             ])
           }),
@@ -33870,27 +33941,85 @@ var render = function() {
         "ul",
         { staticClass: "pagination" },
         [
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._l(_vm.last_page, function(p) {
-            return _c("li", { key: p, staticClass: "waves-effect" }, [
+          _c(
+            "li",
+            { staticClass: "waves-effect", class: { disabled: _vm.page <= 1 } },
+            [
               _c(
                 "a",
                 {
-                  attrs: { href: "#" },
+                  attrs: { href: "#!" },
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.setPage(p)
+                      return _vm.setPage(_vm.page - 1)
                     }
                   }
                 },
-                [_vm._v(_vm._s(p))]
+                [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("chevron_left")
+                  ])
+                ]
               )
-            ])
+            ]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.last_page, function(p) {
+            return _c(
+              "li",
+              {
+                key: p,
+                staticClass: "waves-effect",
+                class: {
+                  active: _vm.pageIsActive(p),
+                  blue: _vm.pageIsActive(p)
+                }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.setPage(p)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(p))]
+                )
+              ]
+            )
           }),
           _vm._v(" "),
-          _vm._m(3)
+          _c(
+            "li",
+            {
+              staticClass: "waves-effect",
+              class: { disabled: _vm.page >= _vm.last_page }
+            },
+            [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#!" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.setPage(_vm.page + 1)
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("chevron_right")
+                  ])
+                ]
+              )
+            ]
+          )
         ],
         2
       )
@@ -33923,39 +34052,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Heure")]),
         _vm._v(" "),
         _c("th", { staticClass: "center" }, [_vm._v("Actions")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass:
-          "red-text text-accent-3 waves-effect btn-small btn-flat white"
-      },
-      [_c("i", { staticClass: "large material-icons" }, [_vm._v("delete")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "disabled" }, [
-      _c("a", { attrs: { href: "#!" } }, [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("chevron_left")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "waves-effect" }, [
-      _c("a", { attrs: { href: "#!" } }, [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("chevron_right")])
       ])
     ])
   }

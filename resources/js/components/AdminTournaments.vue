@@ -37,31 +37,54 @@
             <td>{{ tournament.starting_date }}</td>
             <td>{{ tournament.starting_time }}</td>
             <td class="center">
+              <!-- Edit -->
               <a
                 :href="'/admin/tournaments/' + tournament.id + '/edit'"
                 class="blue-text text-accent-3 waves-effect btn-small btn-flat white"
               >
                 <i class="large material-icons">edit</i>
               </a>
+              <!-- End edit -->
+              <!-- Trash -->
               <a
                 class="red-text text-accent-3 waves-effect btn-small btn-flat white"
+                @click.prevent="trash(tournament.id)"
               >
                 <i class="large material-icons">delete</i>
               </a>
+              <form
+                :id="'trash_' + tournament.id"
+                :action="'/admin/tournaments/trash/' + tournament.id"
+                style="display: none;"
+                method="POST"
+              >
+                <input type="hidden" name="_method" value="PUT" />
+                <input type="hidden" name="_token" :value="csrf" />
+              </form>
+              <!-- End Trash -->
             </td>
           </tr>
         </tbody>
       </table>
 
       <ul class="pagination">
-        <li class="disabled">
-          <a href="#!"><i class="material-icons">chevron_left</i></a>
+        <li class="waves-effect" :class="{ disabled: page <= 1 }">
+          <a @click.prevent="setPage(page - 1)" href="#!"
+            ><i class="material-icons">chevron_left</i></a
+          >
         </li>
-        <li v-for="p in last_page" :key="p" class="waves-effect">
+        <li
+          v-for="p in last_page"
+          :key="p"
+          class="waves-effect"
+          :class="{ active: pageIsActive(p), blue: pageIsActive(p) }"
+        >
           <a @click.prevent="setPage(p)" href="#">{{ p }}</a>
         </li>
-        <li class="waves-effect">
-          <a href="#!"><i class="material-icons">chevron_right</i></a>
+        <li class="waves-effect" :class="{ disabled: page >= last_page }">
+          <a @click.prevent="setPage(page + 1)" href="#!"
+            ><i class="material-icons">chevron_right</i></a
+          >
         </li>
       </ul>
     </div>
@@ -95,10 +118,19 @@ export default {
       page: 1
     };
   },
+  props: ["csrf"],
   methods: {
     getTournaments: () => tournamentApi.getMine(),
     setPage: function(page) {
-      this.page = page;
+      if (page > 0 && page <= this.last_page) {
+        this.page = page;
+      }
+    },
+    pageIsActive: function(page) {
+      return page == this.page;
+    },
+    trash: function(id) {
+      $("#trash_" + id).submit();
     }
   },
   computed: {

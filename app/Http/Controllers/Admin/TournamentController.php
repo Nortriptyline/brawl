@@ -98,6 +98,14 @@ class TournamentController extends Controller
         //
     }
 
+    public function trash(Request $request, Tournament $tournament)
+    {
+        $tournament->delete();
+        $request->session()->flash('toast', $tournament->name . ' : supprimé');
+
+        return redirect()->back();
+    }
+
     public function validateRequest(Request $request)
     {
         return $request->validate([

@@ -42,6 +42,8 @@ Route::namespace('Admin')->group(function () {
 
 
             Route::resource('tournaments', 'TournamentController');
+            Route::put('/tournaments/trash/{tournament}', 'TournamentController@trash')->name('tournaments.trash');
+
             Route::resource('groups', 'GroupController');
         });
     });
