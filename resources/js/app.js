@@ -20,10 +20,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-tournaments', require('./components/AdminTournaments.vue').default);
 Vue.component('search-city', require('./components/searchCity.vue').default);
 Vue.component('brawl-datepicker', require('./components/brawlDatepicker.vue').default);
+Vue.component('brawl-toast', require('./components/Toast.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

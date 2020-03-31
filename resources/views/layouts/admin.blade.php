@@ -100,6 +100,12 @@
                 @yield('content')
             </div>
         </main>
+
+        @if (Session::has('toast'))
+        <brawl-toast message="{{ Session::get('toast') }}"></brawl-toast>
+        @endif
+
+        {{-- end Vuejs App --}}
     </div>
 </body>
 

@@ -10,7 +10,7 @@
     />
     <label for="city_name">Ville / Code postal</label>
 
-    <input id="city_id" v-model="city" type="hidden" name="city_id" />
+    <input id="city_id" v-model="city_id" type="hidden" name="city_id" />
   </div>
 </template>
 
@@ -22,23 +22,44 @@ export default {
     return {
       cities: [],
       citiesId: [],
-      city: "",
-      term: ""
+      city_id: "",
+      term: "",
+      searchable: true,
+      instance: ""
     };
   },
+  props: ["city"],
   methods: {
+    // Call for api search of cities
     search: function(term) {
-      cityApi.search(term).then(data => {
-        if (!this.citiesId.hasOwnProperty(term)) {
-          this.cities = data;
-          var instance = M.Autocomplete.getInstance($("input.autocomplete"));
-          instance.updateData(this.displayedCities);
-          instance.open();
+      if (this.searchable === true) {
+        //   Search only if there is more than 0 characters
+        if (term.length > 0) {
+          cityApi.search(term).then(data => {
+            if (!this.citiesId.hasOwnProperty(term)) {
+              // Set cities. Allow displayed_cities to be formatted
+              this.cities = data;
+
+              // Set displayed cities in autocomplete datas
+              this.instance.updateData(this.displayedCities);
+              this.instance.open();
+            }
+          });
         }
-      });
+      } else {
+        // Allow materializecss label to consider it as selected
+        $("#city_name").focus();
+        // If not delayed, label does not consider element as selected.
+        _.delay(function() {
+          $(":focus").blur();
+        }, 0);
+
+        // Re-enable search after initial lock
+        this.searchable = true;
+      }
     },
     setCity: function(city) {
-      this.city =
+      this.city_id =
         this.citiesId[city] !== "undefined" ? this.citiesId[city] : null;
     }
   },
@@ -62,15 +83,29 @@ export default {
   },
   mounted() {
     var that = this;
-    $(document).ready(function() {
-      $("input.autocomplete").autocomplete({
-        data: {},
-        onAutocomplete: function(value) {
-          that.term = value;
-          that.setCity(value);
-        }
-      });
-    });
+
+    if (this.city !== undefined) {
+      var city = JSON.parse(this.city);
+
+      // if city is already exist, lock initial search.
+      this.searchable = false;
+
+      // Set Existing value into input
+      city = JSON.parse(this.city);
+      this.city_id = city.id;
+      this.term = city.name + " " + city.zip_code;
+    }
+
+    var options = {
+      data: {},
+      onAutocomplete: function(value) {
+        that.term = value;
+        that.setCity(value);
+      }
+    };
+    var elems = document.querySelectorAll(".autocomplete");
+    var instances = M.Autocomplete.init(elems, options);
+    this.instance = M.Autocomplete.getInstance($("input.autocomplete"));
   }
 };
 </script>

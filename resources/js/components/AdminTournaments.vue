@@ -38,6 +38,7 @@
             <td>{{ tournament.starting_time }}</td>
             <td class="center">
               <a
+                :href="'/admin/tournaments/' + tournament.id + '/edit'"
                 class="blue-text text-accent-3 waves-effect btn-small btn-flat white"
               >
                 <i class="large material-icons">edit</i>

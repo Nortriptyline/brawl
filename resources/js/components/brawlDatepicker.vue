@@ -20,9 +20,11 @@
 export default {
   data: function() {
     return {
-      starting_date: ""
+      starting_date: "",
+      instance: "",
     };
   },
+  props: ['date'],
   methods: {
     formatDate: function(date) {
       var d = new Date(date),
@@ -41,10 +43,18 @@ export default {
   },
   mounted: function() {
     var that = this;
+
+    if (this.date !== undefined) {
+        var date = new Date(this.date);
+        this.setDate(date);
+    }
+
     $(".datepicker").datepicker({
       autoClose: true,
       format: "dddd dd mmmm yyyy",
       firstDay: 1,
+      defaultDate: that.date !== undefined ? date : new Date(),
+      setDefaultDate: that.date !== undefined ? true : false,
       i18n: {
         done: "Valider",
         clear: "Effacer",

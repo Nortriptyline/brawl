@@ -18,6 +18,11 @@ class Tournament extends Model
         'field',
     ];
 
+    public function getStartingTimeAttribute($value)
+    {
+        return $this->attributes['starting_time'] = substr($value, 0, -3);
+    }
+
     public function creator()
     {
         return $this->belongsTo('App\User');
