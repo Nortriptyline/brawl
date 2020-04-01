@@ -118,10 +118,14 @@
 </template>
 
 <style lang="scss" scoped>
-// .pagination {
-//   position: absolute;
-//   bottom: 0;
-// }
+.pagination {
+  position: absolute;
+  bottom: 0;
+}
+
+.card {
+    min-height: 550px;
+}
 
 .input-field {
   margin-bottom: 0;
@@ -193,6 +197,13 @@ export default {
     action_icon: function() {
       return this.show_trashes ? "restore" : "delete";
     }
+  },
+  watch: {
+      search: function() {
+          if (this.page != 1) {
+              this.setPage(1);
+          }
+      }
   },
   mounted() {
     this.getTournaments().then(data => {

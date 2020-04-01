@@ -2039,6 +2039,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2097,6 +2101,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     action_icon: function action_icon() {
       return this.show_trashes ? "restore" : "delete";
+    }
+  },
+  watch: {
+    search: function search() {
+      if (this.page != 1) {
+        this.setPage(1);
+      }
     }
   },
   mounted: function mounted() {
@@ -2406,7 +2417,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".input-field[data-v-19015dc6] {\n  margin-bottom: 0;\n}", ""]);
+exports.push([module.i, ".pagination[data-v-19015dc6] {\n  position: absolute;\n  bottom: 0;\n}\n.card[data-v-19015dc6] {\n  min-height: 550px;\n}\n.input-field[data-v-19015dc6] {\n  margin-bottom: 0;\n}", ""]);
 
 // exports
 
