@@ -65,6 +65,11 @@
                                         <a href="{{ route('admin.tournaments.create') }}">Créer</a>
                                     </li>
 
+                                    <li
+                                        class="{{ Route::currentRouteName() == 'admin.tournaments.trashed' ? 'active blue' : ''}}">
+                                        <a href="{{ route('admin.tournaments.trashed') }}">Corbeille</a>
+                                    </li>
+
                                 </ul>
                             </div>
                         </li>

@@ -24,6 +24,7 @@ Vue.component('admin-tournaments', require('./components/AdminTournaments.vue').
 Vue.component('search-city', require('./components/searchCity.vue').default);
 Vue.component('brawl-datepicker', require('./components/brawlDatepicker.vue').default);
 Vue.component('brawl-toast', require('./components/Toast.vue').default);
+Vue.component('tooltip-button', require('./components/TooltipButton.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,6 +35,7 @@ Vue.component('brawl-toast', require('./components/Toast.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
 
 $(document).ready(function () {
     $('.collapsible').collapsible();

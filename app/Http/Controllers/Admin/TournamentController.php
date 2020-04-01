@@ -98,6 +98,20 @@ class TournamentController extends Controller
         //
     }
 
+    public function restore(Request $request, $id)
+    {
+        $tournament = Tournament::withTrashed()->where('id', $id)->first();
+        $tournament->restore();
+        $request->session()->flash('toast', $tournament->name . ' : restauré');
+        return redirect()->back();
+    }
+
+    public function trashed()
+    {
+        return view('admin.tournaments', [
+            'trash' => true
+        ]);
+    }
     public function trash(Request $request, Tournament $tournament)
     {
         $tournament->delete();

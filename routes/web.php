@@ -40,9 +40,10 @@ Route::namespace('Admin')->group(function () {
                 Route::get('/settings', 'SettingsController@index')->name('index');
             });
 
-
-            Route::resource('tournaments', 'TournamentController');
+            Route::get('/tournaments/trashed', 'TournamentController@trashed')->name('tournaments.trashed');
             Route::put('/tournaments/trash/{tournament}', 'TournamentController@trash')->name('tournaments.trash');
+            Route::put('/tournaments/restore/{id}', 'TournamentController@restore')->name('tournaments.restore');
+            Route::resource('tournaments', 'TournamentController');
 
             Route::resource('groups', 'GroupController');
         });
@@ -57,7 +58,8 @@ Route::namespace('Api')->group(function () {
         Route::name('api.')->group(function () {
             // Tournaments routes
             Route::prefix('tournament')->group(function () {
-                Route::get('/', 'TournamentApi@index')->name('my_tournaments');
+                Route::get('/me', 'TournamentApi@index')->name('my_tournaments');
+                Route::get('/me/trash', 'TournamentApi@trashed')->name('my_tournaments_trash');
             });
 
             // Cities

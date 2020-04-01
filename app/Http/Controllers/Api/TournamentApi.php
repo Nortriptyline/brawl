@@ -22,6 +22,13 @@ class TournamentApi extends Controller
             ->json($tournaments);
     }
 
+    public function trashed()
+    {
+        $tournaments = Tournament::onlyTrashed('creator', Auth::id())->with('city')->get();
+        return response()
+            ->json($tournaments);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
