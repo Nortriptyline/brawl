@@ -18,26 +18,36 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
+    {{-- Icon --}}
+    <link rel="icon" href="{{ asset('storage/brawl_logo.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body id="admin" class="grey lighten-4">
+<body class="grey lighten-4">
     <div id="app">
         <header>
             <nav class="white">
                 <div class="nav-wrapper">
+                    <a href="#" data-target="mobile-nav" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
                     <h2 class="black-text">
                         @yield('title')
+                        <a class="right black-text" href="{{ route('home') }}">Retout au site</a>
                     </h2>
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 </div>
             </nav>
             <ul class="sidenav sidenav-fixed" id="mobile-nav">
 
+                <li class="logo">
+                    <a id="main_logo" href="{{ route('home') }}">
+                        <img src="{{ asset('storage/brawl_name_test.png') }}" alt="logo" />
+                    </a>
+                </li>
+
                 {{-- Dashboards --}}
-                <li class="{{ Route::currentRouteName() != 'admin.home' ?: 'active'}}">
-                    <a href="{{ route('admin.home') }}">
+                <li class="{{ Route::currentRouteName() != 'home' ?: 'active'}}">
+                    <a href="{{ route('home') }}">
                         <i class="material-icons">dashboard</i>
                         Dashboards
                     </a>
@@ -48,7 +58,7 @@
                     <ul class="collapsible collapsible-accordion">
                         {{-- Tournaments --}}
                         <li
-                            class="{{ strpos(Route::currentRouteName(), 'admin.tournaments') !== false ? 'active' : ''}}">
+                            class="{{ strpos(Route::currentRouteName(), 'tournaments') !== false ? 'active' : ''}}">
                             <a class="collapsible-header waves-effect waves-teal">
                                 <i class="material-icons">sports_volleyball</i>
                                 Tournaments
@@ -56,18 +66,18 @@
                             <div class="collapsible-body">
                                 <ul>
                                     <li
-                                        class="{{ Route::currentRouteName() == 'admin.tournaments.index' ? 'active blue' : ''}}">
-                                        <a href="{{ route('admin.tournaments.index') }}">Voir tous</a>
+                                        class="{{ Route::currentRouteName() == 'tournaments.index' ? 'active blue' : ''}}">
+                                        <a href="{{ route('tournaments.index') }}">Voir tous</a>
                                     </li>
 
                                     <li
-                                        class="{{ Route::currentRouteName() == 'admin.tournaments.create' ? 'active blue' : ''}}">
-                                        <a href="{{ route('admin.tournaments.create') }}">Créer</a>
+                                        class="{{ Route::currentRouteName() == 'tournaments.create' ? 'active blue' : ''}}">
+                                        <a href="{{ route('tournaments.create') }}">Créer</a>
                                     </li>
 
                                     <li
-                                        class="{{ Route::currentRouteName() == 'admin.tournaments.trashed' ? 'active blue' : ''}}">
-                                        <a href="{{ route('admin.tournaments.trashed') }}">Corbeille</a>
+                                        class="{{ Route::currentRouteName() == 'tournaments.trashed' ? 'active blue' : ''}}">
+                                        <a href="{{ route('tournaments.trashed') }}">Corbeille</a>
                                     </li>
 
                                 </ul>
@@ -79,8 +89,8 @@
                 </li>
 
 
-                <li class="{{ Route::currentRouteName() != 'admin.settings.index' ?: 'active'}}">
-                    <a href="{{ route('admin.settings.index') }}">
+                <li class="{{ Route::currentRouteName() != 'settings.index' ?: 'active'}}">
+                    <a href="{{ route('settings.index') }}">
                         <i class="material-icons">settings</i>
                         Settings
                     </a>

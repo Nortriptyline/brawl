@@ -22,33 +22,27 @@ $(document).ready(function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::namespace('Admin')->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::name('admin.')->group(function () {
-            Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 
-            Route::group([
-                'as' => 'settings.',
-                'prefix' => 'settings',
-            ], function() {
-                Route::get('/settings', 'SettingsController@index')->name('index');
-            });
-
-            Route::get('/tournaments/trashed', 'TournamentController@trashed')->name('tournaments.trashed');
-            Route::put('/tournaments/trash/{tournament}', 'TournamentController@trash')->name('tournaments.trash');
-            Route::put('/tournaments/restore/{id}', 'TournamentController@restore')->name('tournaments.restore');
-            Route::resource('tournaments', 'TournamentController');
-
-            Route::resource('groups', 'GroupController');
-        });
-    });
+Route::group([
+    'as' => 'settings.',
+    'prefix' => 'settings',
+], function () {
+    Route::get('/settings', 'SettingsController@index')->name('index');
 });
+
+Route::get('/tournaments/trashed', 'TournamentController@trashed')->name('tournaments.trashed');
+Route::put('/tournaments/trash/{tournament}', 'TournamentController@trash')->name('tournaments.trash');
+Route::put('/tournaments/restore/{id}', 'TournamentController@restore')->name('tournaments.restore');
+Route::resource('tournaments', 'TournamentController');
+
+Route::resource('groups', 'GroupController');
 
 /**
  * Api routes
@@ -64,7 +58,6 @@ Route::namespace('Api')->group(function () {
 
             // Cities
             Route::get('/city/search/{term}', 'Cities@search')->name('search_city');
-
         });
     });
 });

@@ -9192,6 +9192,29 @@ ul.sidenav.sidenav-fixed ul.collapsible-accordion div.collapsible-body li a {
   font-weight: 400;
 }
 
+.logo {
+  margin: 30px auto;
+  padding-bottom: 30px;
+  text-align: center;
+  border-bottom: 1px solid #717171;
+}
+
+.logo #main_logo {
+  height: 58px;
+}
+
+.logo #main_logo:hover {
+  background-color: #fff;
+}
+
+.logo #main_logo img {
+  max-height: 58px;
+}
+
+#admin {
+  color: black;
+}
+
 #admin header nav h2 {
   margin: 0;
   padding: 20px;

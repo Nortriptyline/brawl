@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.brawl')
 
 @section('title')
 Settings

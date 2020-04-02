@@ -37,7 +37,24 @@ ul.sidenav.sidenav-fixed {
     }
 }
 
+.logo {
+    margin: 30px auto;
+    padding-bottom: 30px;
+    text-align: center;
+    border-bottom: 1px solid #717171;
+    #main_logo {
+        height: 58px;
+        &:hover {
+            background-color: #fff;
+        }
+        img {
+            max-height: 58px;
+        }
+    }
+}
+
 #admin {
+    color: black;
     header {
         nav {
             h2 {

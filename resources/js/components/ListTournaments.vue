@@ -26,7 +26,6 @@
               <th class="center">Places</th>
               <th class="center">Inscrits</th>
               <th>Date</th>
-              <th>Heure</th>
               <th class="center">Actions</th>
             </tr>
           </thead>
@@ -43,7 +42,6 @@
               <td class="center">{{ tournament.size }}</td>
               <td class="center">0</td>
               <td>{{ tournament.starting_date }}</td>
-              <td>{{ tournament.starting_time }}</td>
               <td class="center">
                 <!-- Edit new -->
                 <tooltip-button

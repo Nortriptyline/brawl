@@ -20,7 +20,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('admin-tournaments', require('./components/AdminTournaments.vue').default);
+Vue.component('list-tournaments', require('./components/ListTournaments.vue').default);
 Vue.component('search-city', require('./components/searchCity.vue').default);
 Vue.component('brawl-datepicker', require('./components/brawlDatepicker.vue').default);
 Vue.component('brawl-toast', require('./components/Toast.vue').default);

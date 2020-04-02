@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Tournament;
@@ -22,7 +22,7 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        return view('admin.tournaments');
+        return view('tournaments');
     }
 
     /**
@@ -33,7 +33,7 @@ class TournamentController extends Controller
     public function create()
     {
         //
-        return view('admin.tournaments.create');
+        return view('tournaments.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class TournamentController extends Controller
     {
         $tournament = $this->saveTournament($request);
         $request->session()->flash('toast', $tournament->name . ' ajouté');
-        return redirect()->route('admin.tournaments.index');
+        return redirect()->route('tournaments.index');
     }
 
     /**
@@ -70,7 +70,7 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::find($id);
 
-        return view('admin.tournaments.create', ['tournament' => $tournament]);
+        return view('tournaments.create', ['tournament' => $tournament]);
     }
 
     /**
@@ -84,7 +84,7 @@ class TournamentController extends Controller
     {
         $tournament = $this->saveTournament($request, $id);
         $request->session()->flash('toast', $tournament->name . ' mis à jour');
-        return redirect()->route('admin.tournaments.index');
+        return redirect()->route('tournaments.index');
     }
 
     /**
@@ -108,7 +108,7 @@ class TournamentController extends Controller
 
     public function trashed()
     {
-        return view('admin.tournaments', [
+        return view('tournaments', [
             'trash' => true
         ]);
     }

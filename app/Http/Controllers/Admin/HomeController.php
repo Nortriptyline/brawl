@@ -30,7 +30,7 @@ class HomeController extends Controller
         $departments = Department::where('code', 91)->first();
         $region = Region::where('code', 11)->first();
 
-        return view('admin.home', [
+        return view('home', [
             'region' => $region,
         ]);
     }

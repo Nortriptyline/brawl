@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.brawl')
 
 @section('title')
 Nouveau tournoi
@@ -9,10 +9,10 @@ Nouveau tournoi
 <div class="row">
     @empty($tournament)
     {{-- Creation mode --}}
-    <form class="col s9" action={{ route('admin.tournaments.store') }} method="POST">
+    <form class="col s9" action={{ route('tournaments.store') }} method="POST">
     @else
     {{-- Edition mode --}}
-    <form class="col s9" action={{ route('admin.tournaments.update', $tournament->id) }} method="POST">
+    <form class="col s9" action={{ route('tournaments.update', $tournament->id) }} method="POST">
         @method('PUT')
 
     @endisset
