@@ -1,4 +1,4 @@
-@extends('layouts.brawl')
+@extends('layouts.app')
 
 @section('title')
 Tournament

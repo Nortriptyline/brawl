@@ -54,6 +54,8 @@ Route::namespace('Api')->group(function () {
             Route::prefix('tournament')->group(function () {
                 Route::get('/me', 'TournamentApi@index')->name('my_tournaments');
                 Route::get('/me/trash', 'TournamentApi@trashed')->name('my_tournaments_trash');
+                Route::get('/recents', 'TournamentApi@recents')->name('tournaments.recent');
+                Route::get('/search/{term?}', 'TournamentApi@search')->name('tournaments.search');
             });
 
             // Cities

@@ -26,7 +26,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.13.0",
         "materialize-css": "^1.0.0-rc.2",
-        "select2": "^4.0.13"
+        "select2": "^4.0.13",
+        "swiper": "^5.3.6",
+        "vue-awesome-swiper": "^4.1.0"
     }
 }

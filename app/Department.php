@@ -15,4 +15,9 @@ class Department extends Model
     {
         return $this->belongsTo('App\Region', 'region_code', 'code');
     }
+
+    public function tournaments()
+    {
+        return $this->hasManyThrough('App\City', 'App\Tournament', 'code', 'department_code', 'id', 'city_id');
+    }
 }

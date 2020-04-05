@@ -1,3 +1,5 @@
+import VueAwesomeSwiper from "vue-awesome-swiper";
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -25,6 +27,9 @@ Vue.component('search-city', require('./components/searchCity.vue').default);
 Vue.component('brawl-datepicker', require('./components/brawlDatepicker.vue').default);
 Vue.component('brawl-toast', require('./components/Toast.vue').default);
 Vue.component('tooltip-button', require('./components/TooltipButton.vue').default);
+Vue.component('tournaments-slider', require('./components/TournamentsSlider.vue').default);
+Vue.component('brawl-search', require('./components/SearchModal.vue').default);
+Vue.use(VueAwesomeSwiper)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -36,23 +41,30 @@ const app = new Vue({
     el: '#app',
 });
 
+var timepickerOptions = { twelveHour: false }
+var dropdownOptions = {
+    constrainWidth: false,
+    alignment: 'left'
+}
+var modalOptions = {
+    onOpenEnd: function(el) {
+
+        if ($(el).is('#search_modal')) {
+            $('#searchInput').focus();
+        }
+
+    }
+}
+
 
 $(document).ready(function () {
     $('.collapsible').collapsible();
-});
-
-$(document).ready(function () {
-    $('.sidenav').sidenav();
-});
-
-$(document).ready(function () {
-    $('.timepicker').timepicker(
-        {
-            twelveHour: false
-        }
-    );
-});
-
-$(document).ready(function () {
     $('select').formSelect();
+    $('.carousel').carousel();
+    $('.sidenav').sidenav();
+    $('.modal').modal(modalOptions);
+    $('.timepicker').timepicker(timepickerOptions);
+    $('.dropdown-trigger').dropdown(dropdownOptions);
 });
+
+

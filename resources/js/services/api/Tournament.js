@@ -1,6 +1,12 @@
 import axios from 'axios';
 
 export default {
+    getByUrl(url) {
+        return axios.get('/api/tournament/' + url)
+            .then(response => {
+                return response.data
+            });
+    },
     getMine() {
         return axios.get('/api/tournament/me')
             .then(response => {

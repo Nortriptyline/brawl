@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Tournament extends Model
 {
     use SoftDeletes;
+    use Searchable;
 
     protected $fillable = [
         'name',
@@ -20,6 +22,24 @@ class Tournament extends Model
         'team_size',
         'field',
     ];
+
+    public function toSearchableArray()
+    {
+        // $array = $this->toArray()   ;
+
+        $array = [
+            'id' => $this->id,
+            'name' => $this->name,
+            'genre' => $this->genre,
+            'field' => $this->field,
+            'team_size' => $this->team_size,
+            'city' => $this->city->name,
+            'department' => $this->city->department->name,
+            'region' => $this->city->department->region->name
+        ];
+
+        return $array;
+    }
 
     public function getStartingTimeAttribute($value)
     {
@@ -40,4 +60,5 @@ class Tournament extends Model
     {
         return $this->belongsTo('App\City');
     }
+
 }
