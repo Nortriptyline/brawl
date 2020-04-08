@@ -13,7 +13,9 @@
 
 
 $sidenav-width: 72px;
+$original-sidenav-width: 300px;
 $hero-height: 450px;
+$header-height: 15vh;
 
 header, main, footer {
     padding-left: $sidenav-width;
@@ -25,13 +27,25 @@ header, main, footer {
     }
 }
 
+main {
+    #tournament-nav {
+        margin-left: $sidenav-width;
+        z-index: 0;
+
+    }
+    .extended {
+        padding-left: $original-sidenav-width;
+    }
+}
+
 #search_modal {
     padding-left: $sidenav-width;
     min-height: 550px;
     overflow-y: hidden;
 }
 
-ul.sidenav.sidenav-fixed {
+
+ul#main-nav {
     z-index: 9999;
     ul.collapsible-accordion {
         a.collapsible-header {
@@ -49,7 +63,7 @@ ul.sidenav.sidenav-fixed {
 }
 
 #brawl {
-    .sidenav-fixed {
+    ul#main-nav {
         // height: 100vh;
         // position: relative;
         display: flex;
@@ -91,6 +105,7 @@ ul.sidenav.sidenav-fixed {
                 padding: 20px;
                 font-weight: 400;
                 font-size: larger;
+                padding-left: $original-sidenav-width + $sidenav-width;
             }
         }
         ul {

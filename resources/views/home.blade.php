@@ -19,10 +19,12 @@
 @endsection
 
 @section('content')
-@auth
-<tournaments-slider title="Près de chez moi" path="recents" name="localized"></tournaments-slider>
-@endauth
+<div class="container">
+    @auth
+    <tournaments-slider title="Près de chez moi" path="recents" name="localized"></tournaments-slider>
+    @endauth
 
-<tournaments-slider title="Most popular" path="recents" name="populats"></tournaments-slider>
-<tournaments-slider title="Latest" path="recents" name="latest"></tournaments-slider>
+    <tournaments-slider title="Most popular" path="recents" name="populats"></tournaments-slider>
+    <tournaments-slider title="Latest" path="recents" name="latest"></tournaments-slider>
+</div>
 @endsection

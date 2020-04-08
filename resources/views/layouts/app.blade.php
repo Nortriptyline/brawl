@@ -30,47 +30,68 @@
         <header>
             <nav class="white hide-on-med-and-up">
                 <div class="nav-wrapper">
-                    <a href="#" data-target="mobile-nav" class="sidenav-trigger black-text"><i
+                    <a href="#" data-target="main-nav" class="sidenav-trigger black-text"><i
                             class="material-icons">menu</i></a>
                     <h2 class="black-text">
                         @yield('title')
-                        <a class="right black-text" href="{{ route('home') }}">Retout au site</a>
                     </h2>
                 </div>
             </nav>
-            <ul class="sidenav sidenav-fixed" id="mobile-nav">
+            <ul class="sidenav sidenav-fixed" id="main-nav">
 
                 {{-- Home --}}
                 <li class="{{ Route::currentRouteName() != 'home' ?: 'active'}}">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('home') }}" class="nav-tooltipped" data-tooltip="C'est la maison"
+                        data-position="right">
                         <i class="material-icons">home</i>
                     </a>
                 </li>
+
                 <li>
                     <div class="divider"></div>
                 </li>
+
+                @auth
+                {{-- Dashboard --}}
+                <li class="{{ Route::currentRouteName() != 'dashboard' ?: 'active'}}">
+                    <a href="{{ route('tournaments.dashboard') }}" class="nav-tooltipped" data-tooltip="Dashboard"
+                        data-position="right">
+                        <i class="material-icons">dashboard</i>
+                    </a>
+                </li>
+                @endauth
+
                 {{-- Search --}}
                 <li data-target="searchModal">
-                    <a class="modal-trigger" href="#search_modal">
+                    <a class="modal-trigger nav-tooltipped" href="#search_modal" data-tooltip="Chercher tournoi"
+                        data-position="right">
                         <i class="material-icons">search</i>
                     </a>
                 </li>
 
-                <div class="divider"></div>
+                @auth
+                {{-- Notificationq --}}
+                <li class="{{ Route::currentRouteName() != 'home' ?: 'active'}}">
+                    <a href="{{ route('home') }}" class="nav-tooltipped" data-tooltip="Notifications"
+                        data-position="right">
+                        <i class="material-icons">notifications</i>
+                    </a>
+                </li>
+
+                <li>
+                    <div class="divider"></div>
+                </li>
+                @endauth
 
                 {{-- Tournaments --}}
-                <li class="{{ Route::currentRouteName() == 'tournaments.index' ? 'active blue' : ''}}">
-                    <a href="{{ route('tournaments.index') }}">Voir tous</a>
-                </li>
 
+                {{-- Create --}}
                 <li class="{{ Route::currentRouteName() == 'tournaments.create' ? 'active blue' : ''}}">
-                    <a href="{{ route('tournaments.create') }}">Créer</a>
+                    <a href="{{ route('tournaments.create') }}" class="nav-tooltipped" data-tooltip="Créer un tournoi"
+                        data-position="right">
+                        <i class="material-icons">add</i>
+                    </a>
                 </li>
-
-                <li class="{{ Route::currentRouteName() == 'tournaments.trashed' ? 'active blue' : ''}}">
-                    <a href="{{ route('tournaments.trashed') }}">Corbeille</a>
-                </li>
-
 
                 {{-- Account dropdown --}}
                 <li>
@@ -121,15 +142,11 @@
                     </ul>
                 </li>
             </ul>
-
             @yield('page_header')
         </header>
 
-        <main class="">
-            <div class="container">
-
-                @yield('content')
-            </div>
+        <main>
+            @yield('content')
         </main>
 
         @if (Session::has('toast'))

@@ -16,16 +16,11 @@ class CreateTournamentsTable extends Migration
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('city_id');
-            $table->string('address');
             $table->date('starting_date');
             $table->time('starting_time');
-            $table->smallInteger('size');
-            $table->tinyInteger('team_size');
-            $table->enum('genre', ['male', 'female', 'mixed']);
-            $table->enum('field', ['indoor','beach','grass','snow']);
+            $table->string('address');
+            $table->bigInteger('city_id');
             $table->bigInteger('creator');
-            $table->bigInteger('group_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

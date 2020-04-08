@@ -40,6 +40,7 @@ Route::group([
 Route::get('/tournaments/trashed', 'TournamentController@trashed')->name('tournaments.trashed');
 Route::put('/tournaments/trash/{tournament}', 'TournamentController@trash')->name('tournaments.trash');
 Route::put('/tournaments/restore/{id}', 'TournamentController@restore')->name('tournaments.restore');
+Route::get('/tournament/dashboard', 'TournamentController@dashboard')->name('tournaments.dashboard');
 Route::resource('tournaments', 'TournamentController');
 
 Route::resource('groups', 'GroupController');

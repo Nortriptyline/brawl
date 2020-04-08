@@ -16,7 +16,9 @@ class TournamentApi extends Controller
      */
     public function index()
     {
-        $tournaments = Tournament::where('creator', Auth::id())->with('city')->get();
+        $tournaments = Tournament::where('creator', Auth::id())
+            ->with(['city', 'tsetting'])
+            ->get();
 
         return response()
             ->json($tournaments);
@@ -31,9 +33,11 @@ class TournamentApi extends Controller
 
     public function recents()
     {
-        $tournaments = Tournament::with('city')->orderBy('starting_date', 'desc')
+        $tournaments = Tournament::with(['city', 'tsetting'])
+            ->orderBy('starting_date', 'desc')
             ->limit(10)
             ->get();
+
         return response()
             ->json($tournaments);
     }
@@ -43,7 +47,9 @@ class TournamentApi extends Controller
         $tournaments = Tournament::search($term)
             ->paginate(10);
 
-        $tournaments = $tournaments->load('city');
+        $tournaments = $tournaments
+        ->load('city')
+        ->load('tsetting');
 
         return $tournaments;
     }

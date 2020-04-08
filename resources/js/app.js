@@ -28,6 +28,7 @@ Vue.component('brawl-datepicker', require('./components/brawlDatepicker.vue').de
 Vue.component('brawl-toast', require('./components/Toast.vue').default);
 Vue.component('tooltip-button', require('./components/TooltipButton.vue').default);
 Vue.component('tournaments-slider', require('./components/TournamentsSlider.vue').default);
+Vue.component('page-dashboard', require('./pages/Dashboard.vue').default);
 Vue.component('brawl-search', require('./components/SearchModal.vue').default);
 Vue.use(VueAwesomeSwiper)
 
@@ -55,6 +56,11 @@ var modalOptions = {
 
     }
 }
+var navTooltipsOptions = {
+    inDuration: 300,
+    outDuration: 200,
+    // margin: 0
+}
 
 
 $(document).ready(function () {
@@ -62,6 +68,7 @@ $(document).ready(function () {
     $('select').formSelect();
     $('.carousel').carousel();
     $('.sidenav').sidenav();
+    $('.nav-tooltipped').tooltip(navTooltipsOptions);
     $('.modal').modal(modalOptions);
     $('.timepicker').timepicker(timepickerOptions);
     $('.dropdown-trigger').dropdown(dropdownOptions);

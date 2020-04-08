@@ -34,11 +34,16 @@ class Tournament extends Model
             'field' => $this->field,
             'team_size' => $this->team_size,
             'city' => $this->city->name,
-            'department' => $this->city->department->name,
-            'region' => $this->city->department->region->name
+            // 'department' => $this->city->department->name,
+            // 'region' => $this->city->department->region->name
         ];
 
         return $array;
+    }
+
+    public function tsetting()
+    {
+        return $this->hasOne('App\Tsetting');
     }
 
     public function getStartingTimeAttribute($value)

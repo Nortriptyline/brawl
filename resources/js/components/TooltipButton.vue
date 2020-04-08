@@ -5,7 +5,6 @@
     :class="classes"
     :data-position="position"
     :data-tooltip="data"
-    @click="clickedEvent"
   >
     <slot></slot>
   </a>
@@ -29,7 +28,6 @@ export default {
     "btn_size",
     "position",
     "data",
-    "is_submit"
   ],
   computed: {
     classes: function() {
@@ -46,11 +44,6 @@ export default {
     }
   },
   methods: {
-    clickedEvent: function() {
-      if (this.is_submit) {
-        this.$emit("send_form");
-      }
-    }
   },
   mounted() {
     var elems = document.querySelectorAll(".tooltipped");

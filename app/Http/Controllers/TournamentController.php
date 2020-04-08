@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Tournament;
-
+use App\Tsetting;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -23,6 +23,18 @@ class TournamentController extends Controller
     public function index()
     {
         return view('tournaments');
+    }
+
+    public function dashboard()
+    {
+        $tournaments = Tournament::with(['city', 'tsetting'])
+            ->where('creator', Auth::id())
+            ->orderBy('starting_date', 'DESC')
+            ->paginate(5);
+
+        return view('tournaments.dashboard', [
+            'tournaments' => $tournaments
+        ]);
     }
 
     /**
@@ -44,9 +56,30 @@ class TournamentController extends Controller
      */
     public function store(Request $request)
     {
-        $tournament = $this->saveTournament($request);
+
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'city_id' => 'required|exists:cities,id',
+            'starting_date' => 'required|date',
+            'starting_time' => 'required|date_format:H:i',
+            'address' => 'required|max:255',
+        ]);
+
+        $tournament = new Tournament();
+        $tournament->name = $request->input('name');
+        $tournament->starting_date = $request->input('starting_date');
+        $tournament->starting_time = $request->input('starting_time');
+        $tournament->address = $request->input('address');
+        $tournament->city_id = $request->input('city_id');
+        $tournament->creator = Auth::id();
+
+        $tournament->save();
+
+        // Initialize tsettings
+        $tournament->tsetting()->create();
+
         $request->session()->flash('toast', $tournament->name . ' ajouté');
-        return redirect()->route('tournaments.index');
+        return redirect()->route('tournaments.dashboard');
     }
 
     /**
@@ -70,7 +103,7 @@ class TournamentController extends Controller
     {
         $tournament = Tournament::find($id);
 
-        return view('tournaments.create', ['tournament' => $tournament]);
+        return view('tournaments.edit', ['tournament' => $tournament]);
     }
 
     /**
@@ -142,16 +175,11 @@ class TournamentController extends Controller
 
         $tournament = $tournament ?? new Tournament();
 
-        $tournament->name = $request->input('name');
-        $tournament->city_id = $request->input('city_id');
-        $tournament->starting_date = $request->input('starting_date');
-        $tournament->starting_time = $request->input('starting_time');
-        $tournament->address = $request->input('address');
+
         $tournament->size = $request->input('size');
         $tournament->genre = $request->input('genre');
         $tournament->team_size = $request->input('team_size');
         $tournament->field = $request->input('field');
-        $tournament->creator = Auth::id();
 
         $tournament->save();
 

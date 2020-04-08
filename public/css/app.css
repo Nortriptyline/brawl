@@ -9714,52 +9714,61 @@ footer {
   }
 }
 
+main #tournament-nav {
+  margin-left: 72px;
+  z-index: 0;
+}
+
+main .extended {
+  padding-left: 300px;
+}
+
 #search_modal {
   padding-left: 72px;
   min-height: 550px;
   overflow-y: hidden;
 }
 
-ul.sidenav.sidenav-fixed {
+ul#main-nav {
   z-index: 9999;
 }
 
-ul.sidenav.sidenav-fixed ul.collapsible-accordion a.collapsible-header {
+ul#main-nav ul.collapsible-accordion a.collapsible-header {
   padding: 0 30px;
 }
 
-ul.sidenav.sidenav-fixed ul.collapsible-accordion div.collapsible-body li a {
+ul#main-nav ul.collapsible-accordion div.collapsible-body li a {
   padding: 0 45px;
   font-weight: 400;
 }
 
-#brawl .sidenav-fixed {
+#brawl ul#main-nav {
   display: flex;
   flex-direction: column;
   width: 72px;
   overflow: visible;
 }
 
-#brawl .sidenav-fixed .divider {
+#brawl ul#main-nav .divider {
   margin: 0;
 }
 
-#brawl .sidenav-fixed > li > a,
-#brawl .sidenav-fixed > li > a.btn-flat {
+#brawl ul#main-nav > li > a,
+#brawl ul#main-nav > li > a.btn-flat {
   text-align: center;
   padding: 0;
   margin: 0;
 }
 
-#brawl .sidenav-fixed > li > a i,
-#brawl .sidenav-fixed > li > a.btn-flat i {
+#brawl ul#main-nav > li > a i,
+#brawl ul#main-nav > li > a.btn-flat i {
   text-align: center;
   margin: 0;
   float: none;
   font-size: 24px;
 }
 
-#brawl .sidenav-fixed > :last-child {
+#brawl ul#main-nav > :last-child {
   margin-top: auto;
 }
 
@@ -9774,6 +9783,7 @@ ul.sidenav.sidenav-fixed ul.collapsible-accordion div.collapsible-body li a {
   padding: 20px;
   font-weight: 400;
   font-size: larger;
+  padding-left: 372px;
 }
 
 #brawl main {

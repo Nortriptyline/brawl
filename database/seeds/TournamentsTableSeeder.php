@@ -11,8 +11,8 @@ class TournamentsTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = App\User::all();
-
-        factory(App\Tournament::class, 25)->create();
+        factory(App\Tournament::class, 75)->create()->each(function($tournament) {
+            $tournament->tsetting()->save(factory(App\Tsetting::class)->make());
+        });
     }
 }
