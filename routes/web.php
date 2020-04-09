@@ -41,6 +41,21 @@ Route::get('/tournaments/trashed', 'TournamentController@trashed')->name('tourna
 Route::put('/tournaments/trash/{tournament}', 'TournamentController@trash')->name('tournaments.trash');
 Route::put('/tournaments/restore/{id}', 'TournamentController@restore')->name('tournaments.restore');
 Route::get('/tournament/dashboard', 'TournamentController@dashboard')->name('tournaments.dashboard');
+
+Route::group([
+    'as' => 'tournaments.',
+    'prefix' => 'tournaments/{tournament}'
+], function () {
+
+    // Tournament edition
+    Route::group([
+        'as' => 'edit.',
+        'prefix' => 'edit'
+    ], function () {
+        Route::get('/details', 'TournamentController@editDetails')->name('details');
+    });
+});
+
 Route::resource('tournaments', 'TournamentController');
 
 Route::resource('groups', 'GroupController');
@@ -57,6 +72,7 @@ Route::namespace('Api')->group(function () {
                 Route::get('/me/trash', 'TournamentApi@trashed')->name('my_tournaments_trash');
                 Route::get('/recents', 'TournamentApi@recents')->name('tournaments.recent');
                 Route::get('/search/{term?}', 'TournamentApi@search')->name('tournaments.search');
+                Route::get('/{id}', 'TournamentApi@get')->name('tournament.get');
             });
 
             // Cities

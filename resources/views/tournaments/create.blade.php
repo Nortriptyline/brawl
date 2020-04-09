@@ -14,7 +14,7 @@ Création de tournoi
 
 @section('content')
 
-@component('components.nav')
+@component('components.tournaments.nav')
 @endcomponent
 
 <div class="extended">

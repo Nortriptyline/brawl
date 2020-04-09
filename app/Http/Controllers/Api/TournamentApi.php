@@ -24,6 +24,13 @@ class TournamentApi extends Controller
             ->json($tournaments);
     }
 
+    public function get($tournament)
+    {
+        $tournament = Tournament::find($tournament);
+        return response()
+                ->json($tournament);
+    }
+
     public function trashed()
     {
         $tournaments = Tournament::onlyTrashed('creator', Auth::id())->with('city')->get();

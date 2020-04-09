@@ -9714,9 +9714,44 @@ footer {
   }
 }
 
-main #tournament-nav {
-  margin-left: 72px;
-  z-index: 0;
+main .sidebanner {
+  margin: 0;
+  position: absolute;
+  height: 100vh;
+  top: 0;
+  width: 300px;
+}
+
+main .sidebanner .dashboard a {
+  padding: 20px 10px;
+}
+
+main .sidebanner .category {
+  margin-top: 10px;
+}
+
+main .sidebanner .item a {
+  display: block;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #424242;
+}
+
+main .sidebanner .item a:hover {
+  cursor: pointer;
+  background: #eeeeee;
+}
+
+main .sidebanner li.title {
+  padding: 5px 10px;
+  color: #9e9e9e;
+  font-weight: 500;
+}
+
+main .sidebanner .header {
+  height: 15vh;
+  background: #eeeeee;
 }
 
 main .extended {

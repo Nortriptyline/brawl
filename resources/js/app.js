@@ -30,6 +30,9 @@ Vue.component('tooltip-button', require('./components/TooltipButton.vue').defaul
 Vue.component('tournaments-slider', require('./components/TournamentsSlider.vue').default);
 Vue.component('page-dashboard', require('./pages/Dashboard.vue').default);
 Vue.component('brawl-search', require('./components/SearchModal.vue').default);
+
+Vue.component('edit-page', require('./components/tournament/Edit.vue').default);
+Vue.component('tournament-settings', require('./components/tournament/edit/Settings.vue').default);
 Vue.use(VueAwesomeSwiper)
 
 /**
